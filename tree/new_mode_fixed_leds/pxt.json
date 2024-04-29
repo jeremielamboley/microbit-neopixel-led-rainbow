@@ -1,0 +1,25 @@
+{
+    "name": "microbit-neopixel-led-rainbow-tree-new_mode_fixed_leds",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "microbit-neopixel-led-rainbow": "github:jeremielamboley/microbit-neopixel-led-rainbow"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "6.0.26",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}
