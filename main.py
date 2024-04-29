@@ -47,7 +47,7 @@ still = 0
 LEDdirection = forward
 LedColorIndex = 0
 strip = neopixel.create(DigitalPin.P0, 30, NeoPixelMode.RGB)
-timer = 1 * 60000
+timer = 10 * 60000
 runningTimeCeiling = timer
 strip.set_brightness(40)
 strip.show_rainbow(1, 360)
