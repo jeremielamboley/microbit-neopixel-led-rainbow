@@ -1,20 +1,56 @@
 input.onButtonPressed(Button.A, function () {
-    LEDdirection = forward
+    LEDdirection = still
+    strip.showColor(LedColors[LedColorIndex])
+    if (LedColorIndex == 8) {
+        LedColorIndex = 0
+    } else {
+        LedColorIndex = LedColorIndex + 1
+    }
+    runningTimeCeiling = input.runningTime() + 600000
+})
+input.onButtonPressed(Button.AB, function () {
+    LEDdirection = still
+    strip.showRainbow(1, 360)
+    runningTimeCeiling = input.runningTime() + 600000
 })
 input.onButtonPressed(Button.B, function () {
-    LEDdirection = backward
+    strip.showRainbow(1, 360)
+    LEDdirection = forward
+    runningTimeCeiling = input.runningTime() + 600000
 })
+let runningTimeCeiling = 0
+let strip: neopixel.Strip = null
+let LedColorIndex = 0
 let LEDdirection = 0
-let backward = 0
+let still = 0
 let forward = 0
+let LedColors: number[] = []
 basic.showIcon(IconNames.Heart)
-let strip = neopixel.create(DigitalPin.P0, 30, NeoPixelMode.RGB)
+LedColors = [
+neopixel.colors(NeoPixelColors.Red),
+neopixel.colors(NeoPixelColors.Orange),
+neopixel.colors(NeoPixelColors.Yellow),
+neopixel.colors(NeoPixelColors.Green),
+neopixel.colors(NeoPixelColors.Blue),
+neopixel.colors(NeoPixelColors.Indigo),
+neopixel.colors(NeoPixelColors.Violet),
+neopixel.colors(NeoPixelColors.Purple),
+neopixel.colors(NeoPixelColors.White)
+]
 forward = 1
-backward = -1
+let backward = -1
+still = 0
 LEDdirection = forward
+LedColorIndex = 0
+strip = neopixel.create(DigitalPin.P0, 30, NeoPixelMode.RGB)
+runningTimeCeiling = 600000
+strip.setBrightness(40)
 strip.showRainbow(1, 360)
 basic.forever(function () {
     strip.rotate(LEDdirection)
     strip.show()
     basic.pause(200)
+    if (input.runningTime() > runningTimeCeiling) {
+        strip.clear()
+    }
 })
